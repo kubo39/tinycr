@@ -14,4 +14,5 @@ cd ..
 export LIBRARY_PATH=/tmp/libpcl-1.12-1/lib:./bdwgc/.libs
 crystal build hello.cr --release --emit obj
 gcc hello.o -o hello -s -l:libpcre.a -l:libgc.a -l:libevent.a -l:libpcl.a -lpthread -lunwind
+wc -c < hello
 ```
