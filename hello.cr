@@ -24,3 +24,6 @@ def __main
   syscall(WRITE, 1_u64, b.buffer.address, b.size.to_u64)
   syscall(EXIT, 0_u64)
 end
+
+
+__main
