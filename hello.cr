@@ -1,29 +1,36 @@
-WRITE = 1_u64
-EXIT = 60_u64
-
-def syscall(n, arg1, arg2, arg3 : UInt64) : UInt64
-  dst :: UInt64
-  asm("syscall" : "={rax}"(dst)
-      : "{rax}"(n), "{rdi}"(arg1), "{rsi}"(arg2), "{rdx}"(arg3)
-      : "rcx", "r11", "memory"
-      : "volatile")
-  return dst
-end
-
-def syscall(n, arg1 : UInt64) : UInt64
-  dst :: UInt64
-  asm("syscall" : "={rax}"(dst)
-      : "{rax}"(n), "{rdi}"(arg1)
-      : "rcx", "r11", "memory"
-      : "volatile")
-  return dst
-end
+require "intrinsics"
+require "libc"
+require "macros"
+require "object"
+require "exception"
+require "value"
+require "thread"
+require "gc"
+require "gc/boehm"
+require "comparable"
+require "enumerable"
+require "iterable"
+require "iterator"
+require "number"
+require "int"
+require "pointer"
+require "slice"
+require "string"
+require "static_array"
+require "array"
+require "math/math"
+require "process"
+require "raise"
 
 def __main
+  write = 1_u64
+  dst :: UInt64
   b = "Hello!\n".bytes
-  syscall(WRITE, 1_u64, b.buffer.address, b.size.to_u64)
-  syscall(EXIT, 0_u64)
-end
 
+  asm("syscall" : "={rax}"(dst)
+      : "{rax}"(write), "{rdi}"(1), "{rsi}"(b.buffer.address), "{rdx}"(b.length.to_u64)
+      : "rcx", "r11", "memory"
+      : "volatile")
+end
 
 __main
