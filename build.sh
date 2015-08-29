@@ -23,5 +23,5 @@ fi
 
 export LIBRARY_PATH=./bdwgc/.libs
 crystal build hello.cr --emit obj --prelude=empty --release
-gcc hello.o -o hello -s -lgc -lpthread -lunwind
+gcc hello.o -o hello -s
 wc -c < hello

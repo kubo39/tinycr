@@ -1,17 +1,16 @@
 # tinycr
 
 ```
-git clone git://github.com/ivmai/libatomic_ops.git
-git clone git://github.com/ivmai/bdwgc.git
-ln -s `pwd`/libatomic_ops `pwd`/bdwgc/libatomic_ops
-cd bdwgc
-autoreconf -vif
-automake --add-missing
-./configure
-make
-cd ..
-export LIBRARY_PATH=./bdwgc/.libs
-crystal build hello.cr --emit obj --prelude=empty --release
-gcc hello.o -o hello -s -lgc -lpthread -lunwind
-wc -c < hello
+$ ./build.sh
+Crystal 0.7.6 [eb13f75] (Thu Aug 13 21:39:15 UTC 2015)
+
++ '[' -e ivmai ']'
++ export LIBRARY_PATH=./bdwgc/.libs
++ LIBRARY_PATH=./bdwgc/.libs
++ crystal build hello.cr --emit obj --prelude=empty --release
++ gcc hello.o -o hello -s
++ wc -c
+6272
+$ ./hello
+Hello!
 ```
