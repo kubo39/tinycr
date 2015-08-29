@@ -10,5 +10,5 @@ echo
 set -x
 
 crystal build hello.cr --emit obj --prelude=empty --release
-gcc hello.o -o hello -s
+gcc hello.o -o hello -s --static -l:/usr/lib/x86_64-linux-musl/libc.a
 wc -c < hello
