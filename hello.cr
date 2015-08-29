@@ -15,11 +15,16 @@ end
 
 def __main
   write = 1_u64
+  exit = 60_u64
   dst :: UInt64
   b = "Hello!\n".to_unsafe
 
   asm("syscall" : "={rax}"(dst)
       : "{rax}"(write), "{rdi}"(1), "{rsi}"(b), "{rdx}"(7)
+      : "rcx", "r11", "memory"
+      : "volatile")
+  asm("syscall" : "={rax}"(dst)
+      : "{rax}"(exit), "{rdi}"(0)
       : "rcx", "r11", "memory"
       : "volatile")
 end
