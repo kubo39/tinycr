@@ -1,15 +1,6 @@
-require "intrinsics"
-require "libc"
-require "macros"
-require "object"
-require "comparable"
-require "enumerable"
-require "iterator"
-require "string"
-
 class String
   def to_unsafe
-    cstr
+    pointerof(@a)
   end
 end
 
