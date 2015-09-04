@@ -1,7 +1,5 @@
 #!/bin/bash
 
-dirname=ivmai
-
 set -e
 
 crystal -v
