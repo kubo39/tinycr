@@ -1,15 +1,8 @@
-class String
-  def to_unsafe
-    pointerof(@c)
-  end
-end
-
 def syswrite
   dst = 0_u64
   write = 1_u64
-  b = "Hello!\n".to_unsafe
   asm("syscall" : "={rax}"(dst)
-      : "{rax}"(write), "{rdi}"(1), "{rsi}"(b), "{rdx}"(7)
+      : "{rax}"(write), "{rdi}"(1), "{rsi}"(0x400008), "{rdx}"(7)
       : "rcx", "r11", "memory"
       : "volatile")
 end

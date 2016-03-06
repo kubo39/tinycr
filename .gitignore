@@ -2,5 +2,5 @@
 *.o
 .crystal
 hello
-bdwgc/
-libatomic_ops/
+hello.bin
+tinybin
