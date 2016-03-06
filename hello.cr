@@ -1,13 +1,13 @@
 class String
   def to_unsafe
-    pointerof(@a)
+    pointerof(@c)
   end
 end
 
 def syswrite
   dst = 0_u64
   write = 1_u64
-  b = " Hello!\n".to_unsafe  # It's terrible workaround!
+  b = "Hello!\n".to_unsafe
   asm("syscall" : "={rax}"(dst)
       : "{rax}"(write), "{rdi}"(1), "{rsi}"(b), "{rdx}"(7)
       : "rcx", "r11", "memory"
