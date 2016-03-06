@@ -8,5 +8,6 @@ echo
 set -x
 
 crystal build hello.cr --emit obj --prelude=empty --release
-gcc hello.o -o hello -e main -s --static -nostdlib -Xlinker --gc-sections
+ld hello.o -o hello -e main -s --static -nostdlib --gc-sections
 wc -c < hello
+./hello
