@@ -2,7 +2,7 @@
 
 ```
 $ ./build.sh
-Crystal 0.12.0 [90eaec1] (Tue Feb 16 14:31:00 UTC 2016)
+Crystal 0.13.0 [60777f3] (Mon Mar  7 17:12:47 UTC 2016)
 
 + crystal build hello.cr --emit obj --prelude=empty --release
 + ld hello.o -o hello -s --static -nostdlib --gc-sections -T script.ld
