@@ -6,9 +6,13 @@ Crystal 0.20.3 [b1416e2] (2016-12-23)
 
 + crystal build hello.cr --emit obj --prelude=empty --release --verbose
 cc -o "/home/kubo39/dev/crystal/tinycr/hello" "${@}"  -rdynamic  -L/usr/lib -L/usr/local/lib _main.o
-+ ld hello.o -o hello -s --static -nostdlib --gc-sections -T script.ld
++ ld hello.o -o hello --static -nostdlib --gc-sections -T script.ld
 + objcopy -j combined -O binary hello hello.bin
-+ nasm -f bin -o tinybin -D entry=0x400070 elf.s
+++ nm -f posix hello
+++ grep main
+++ awk '{print $3}'
++ ENTRY=0000000000400070
++ nasm -f bin -o tinybin -D entry=0x0000000000400070 elf.s
 + chmod +x tinybin
 + hexdump -C tinybin
 00000000  7f 45 4c 46 02 01 01 00  48 65 6c 6c 6f 21 0a 00  |.ELF....Hello!..|
