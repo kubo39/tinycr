@@ -8,9 +8,10 @@ echo
 set -x
 
 crystal build hello.cr --emit obj --prelude=empty --release --verbose
-ld hello.o -o hello -s --static -nostdlib --gc-sections -T script.ld
+ld hello.o -o hello --static -nostdlib --gc-sections -T script.ld
 objcopy -j combined -O binary hello hello.bin
-nasm -f bin -o tinybin -D entry=0x400070 elf.s
+ENTRY=$(nm -f posix hello | grep 'main' | awk '{print $3}')
+nasm -f bin -o tinybin -D entry=0x$ENTRY elf.s
 chmod +x tinybin
 hexdump -C tinybin
 wc -c < tinybin
