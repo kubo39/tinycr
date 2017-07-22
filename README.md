@@ -1,14 +1,31 @@
 # tinycr
 
-```
-$ ./build.sh
-Crystal 0.20.3 [b1416e2] (2016-12-23)
+```console
+Crystal 0.23.0 [3c3d3e2] (2017-06-28) LLVM 3.8.1
 
 + crystal build hello.cr --emit obj --prelude=empty --release --verbose
-cc -o "/home/kubo39/dev/crystal/tinycr/hello" "${@}"  -rdynamic  -L/usr/lib -L/usr/local/lib _main.o
+cc "${@}" -o '/home/kubo39/dev/crystal/tinycr/hello'  -rdynamic  -L/usr/lib -L/usr/local/lib _main.o
++ objdump -dr hello.o
+
+hello.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <main>:
+   0:   b8 01 00 00 00          mov    $0x1,%eax
+   5:   bf 01 00 00 00          mov    $0x1,%edi
+   a:   be 08 00 40 00          mov    $0x400008,%esi
+   f:   ba 07 00 00 00          mov    $0x7,%edx
+  14:   0f 05                   syscall
+  16:   b8 3c 00 00 00          mov    $0x3c,%eax
+  1b:   31 ff                   xor    %edi,%edi
+  1d:   0f 05                   syscall
+  1f:   31 c0                   xor    %eax,%eax
+  21:   c3                      retq
 + ld hello.o -o hello --static -nostdlib --gc-sections -T script.ld
 + objcopy -j combined -O binary hello hello.bin
-++ nm -f posix hello
+++ nm --format=posix hello
 ++ grep main
 ++ awk '{print $3}'
 + ENTRY=0000000000400070
