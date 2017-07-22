@@ -1,6 +1,7 @@
 # tinycr
 
 ```console
+$ ./build.sh
 Crystal 0.23.0 [3c3d3e2] (2017-06-28) LLVM 3.8.1
 
 + crystal build hello.cr --emit obj --prelude=empty --release --verbose
