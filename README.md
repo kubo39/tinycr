@@ -52,7 +52,7 @@ Disassembly of section .text:
 ++ awk '{print $3}'
 + ENTRY=0000000000400070
 + nasm -f bin -o tinybin -D entry=0x0000000000400070 elf.s
-+ chmod +x tinybin
++ chmod u+x tinybin
 + hexdump -C tinybin
 00000000  7f 45 4c 46 02 01 01 00  48 65 6c 6c 6f 21 0a 00  |.ELF....Hello!..|
 00000010  02 00 3e 00 01 00 00 00  70 00 40 00 00 00 00 00  |..>.....p.@.....|
