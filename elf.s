@@ -34,7 +34,7 @@ phdr:
 
 phdrsize equ  $ - phdr
 
-incbin "hello.bin"
+incbin "hello.bin",0x10
 
 filesize equ $ - ehdr
 
